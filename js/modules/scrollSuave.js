@@ -1,19 +1,32 @@
-export default function iniScrollSuave() {
-  const menuLinks = document.querySelectorAll('.menu-js a[href^="#"]'); // Selecionando todos os links internos.
+export default class ScrollSuave {
+  constructor(links, opcoes) {
+    this.linksInternos = document.querySelectorAll(links);
+    if (opcoes === undefined) {
+      this.opcoes = { behavior: 'smooth', block: 'start' };
+    } else {
+      this.opcoes = opcoes;
+    }
+    this.scrollParaSection = this.scrollParaSection.bind(this);
+  }
 
-  function scrollParaSection(event) {
-    event.preventDefault(); // Desabilitando o comportamento padrão do link interno.
-    const link = event.target.getAttribute('href'); // Pegando o atributo href dos links.
-    const section = document.querySelector(link); // Selecionando a section atravéz de seu href
+  scrollParaSection(event) {
+    console.log(event);
+    event.preventDefault();
+    const link = event.target.getAttribute('href');
+    const section = document.querySelector(link);
+    section.scrollIntoView(this.opcoes);
+  }
 
-    section.scrollIntoView({
-      // Vai dar o scroll até a section relacionada com o link interno, dando um scroll suave.
-      behavior: 'smooth',
+  addLinkEvent() {
+    this.linksInternos.forEach((links) => {
+      links.addEventListener('click', this.scrollParaSection);
     });
   }
 
-  menuLinks.forEach((links) => {
-    // Adicionando a função de click em casa a.
-    links.addEventListener('click', scrollParaSection);
-  });
+  init() {
+    if (this.linksInternos.length) {
+      this.addLinkEvent();
+    }
+    return this;
+  }
 }
