@@ -1,22 +1,22 @@
 export default function initModal() {
-  const containerModal = document.querySelector('[data-modal="conteiner"]');
-  const btnAbrir = document.querySelector('[data-modal="abrir"]');
-  const btnFechar = document.querySelector('[data-modal="fechar"]');
+  const botaoAbrir = document.querySelector('[data-modal="abrir"]');
+  const botaoFechar = document.querySelector('[data-modal="fechar"]');
+  const containerModal = document.querySelector('[data-modal="container"]');
 
   function toggleModal(event) {
     event.preventDefault();
     containerModal.classList.toggle('ativo');
   }
 
-  function fecharClickForaModal(event) {
+  function cliqueForaModal(event) {
     if (event.target === this) {
       toggleModal(event);
     }
   }
 
-  if (containerModal && btnAbrir && btnFechar) {
-    btnFechar.addEventListener('click', toggleModal);
-    btnAbrir.addEventListener('click', toggleModal);
-    containerModal.addEventListener('click', fecharClickForaModal);
+  if (botaoAbrir && botaoFechar && containerModal) {
+    botaoAbrir.addEventListener('click', toggleModal);
+    botaoFechar.addEventListener('click', toggleModal);
+    containerModal.addEventListener('click', cliqueForaModal);
   }
 }
