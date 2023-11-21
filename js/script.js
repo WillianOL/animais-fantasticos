@@ -4,7 +4,7 @@ import Accordion from './modules/accordion.js';
 import TabNav from './modules/tabnav.js';
 import Modal from './modules/modal.js';
 import Tooltip from './modules/tooltip.js';
-import initDropdownMenu from './modules/dropdown-menu.js';
+import DropdownMenu from './modules/dropdown-menu.js';
 import initMenuMobile from './modules/menu-mobile.js';
 import initFuncionamento from './modules/funcionamento.js';
 import fetchAnimais from './modules/fetch-animais.js';
@@ -16,14 +16,14 @@ const tabNav = new TabNav('[data-tab="menu"] li', '[data-tab="content"] section'
 const modal = new Modal('[data-modal="container"]', '[data-modal="abrir"]', '[data-modal="fechar"]');
 const tooltip = new Tooltip('[data-tooltip]');
 const scrollAnima = new ScrollAnima('[data-anime="scroll"]');
+const dropdownMenu = new DropdownMenu('[data-dropdown]');
 scrollAnima.init();
 scrollSuave.init();
 accordion.init();
 tabNav.init();
 modal.init();
 tooltip.init();
-
-initDropdownMenu();
+dropdownMenu.init();
 initMenuMobile();
 initFuncionamento();
 
